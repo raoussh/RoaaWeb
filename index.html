@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light" data-size="md">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PawPlace — فندق الكلاب الفاخر في هونج كونج. رعاية بيطرية متكاملة، مرافق راقية، وفريق متخصص يعمل 24/7." />
+  <meta name="theme-color" content="#1E1008" />
+  <title>PawPlace | فندق الكلاب الفاخر — هونج كونج</title>
+  <link rel="icon" href="https://img.icons8.com/color/48/dog-paw-print.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../CSS/style.css" />
+
+  <style>
+    /* ── Icon tinting to match site palette ── */
+    .icon-brown  { filter: sepia(1) saturate(3) hue-rotate(340deg) brightness(.65); }
+    .icon-accent { filter: sepia(1) saturate(4) hue-rotate(330deg) brightness(.7); }
+    .icon-sage   { filter: sepia(1) saturate(2) hue-rotate(80deg)  brightness(.7); }
+    .icon-warm   { filter: sepia(1) saturate(2) hue-rotate(355deg) brightness(.75); }
+    /* In dark mode, brighten a bit */
+    [data-theme="dark"] .icon-brown  { filter: sepia(1) saturate(2) hue-rotate(340deg) brightness(1.4); }
+    [data-theme="dark"] .icon-accent { filter: sepia(1) saturate(3) hue-rotate(330deg) brightness(1.3); }
+    [data-theme="dark"] .icon-sage   { filter: sepia(1) saturate(2) hue-rotate(80deg)  brightness(1.4); }
+    [data-theme="dark"] .icon-warm   { filter: sepia(1) saturate(2) hue-rotate(355deg) brightness(1.5); }
+    /* Topbar icon is always light on dark bg */
+    #topbar .theme-btn img { filter: brightness(3) saturate(0); }
+    /* Nav logo paw keeps natural color */
+    .nav-logo img { filter: none; }
+    /* Pills icons keep color */
+    .hero-pill img { filter: none; }
+    /* Social hover — white */
+    .soc-btn:hover img { filter: brightness(10) !important; }
+    /* Team card image — square not circle */
+    .team-img-wrap { aspect-ratio: 1/1; }
+    /* Testimonial avatar — always circle, cropped clean */
+    .t-avatar { border-radius: 50%; object-fit: cover; }
+    /* --- Improved topbar layout --- */
+    #topbar { gap: .9rem; }
+    .topbar-label { font-size: .75rem; color: var(--brown-400); letter-spacing: .05em; }
+    /* Stats row on hero */
+    .hero-stats { flex-wrap: wrap; }
+    /* FAQ section */
+    .faq-list { max-width: 780px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; text-align: right; background: none; border: none;
+      padding: 1.2rem 0; display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--font-body); font-size: .97rem; font-weight: 600;
+      color: var(--text-1); cursor: pointer; gap: 1rem;
+    }
+    .faq-q img { flex-shrink: 0; transition: transform .3s; }
+    .faq-item.open .faq-q img { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height .35s ease, padding .3s ease;
+      font-size: .9rem; color: var(--text-2); line-height: 1.8;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding-bottom: 1.2rem; }
+    /* Why us grid */
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 1.4rem; margin-top: 3rem; }
+    .why-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.8rem 1.5rem; text-align: center;
+      transition: transform .28s var(--spring), box-shadow .25s;
+    }
+    .why-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .why-card img { width: 42px; height: 42px; margin: 0 auto 1rem; }
+    .why-card h3 { font-family: var(--font-display); font-size: 1.15rem; color: var(--text-1); margin-bottom: .5rem; }
+    .why-card p  { font-size: .85rem; color: var(--text-2); line-height: 1.7; }
+    /* Process steps */
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 1.6rem; counter-reset: step; }
+    .step-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.8rem 1.5rem;
+      position: relative; counter-increment: step;
+      transition: border-color .2s, transform .28s var(--spring);
+    }
+    .step-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .step-num {
+      font-family: var(--font-display); font-size: 3rem; font-weight: 700;
+      color: var(--brown-200); line-height: 1;
+      position: absolute; top: .8rem; left: 1rem;
+    }
+    [data-theme="dark"] .step-num { color: var(--border); }
+    .step-icon { width: 36px; height: 36px; margin-bottom: 1rem; }
+    .step-card h4 { font-weight: 700; color: var(--text-1); margin-bottom: .4rem; font-size: .95rem; }
+    .step-card p  { font-size: .84rem; color: var(--text-2); line-height: 1.7; }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">انتقل إلى المحتوى الرئيسي</a>
+<div id="pg-bar" role="progressbar" aria-label="تقدم التمرير" aria-valuenow="0"></div>
+
+<!-- ══════════════════════════════════════
+     TOPBAR
+══════════════════════════════════════ -->
+<div id="topbar" role="toolbar" aria-label="أدوات إمكانية الوصول">
+  <span class="topbar-label">اللغة</span>
+  <label class="sr-only" for="lang-select">اختر اللغة</label>
+  <select id="lang-select" class="lang-select" aria-label="اختر اللغة">
+    <option value="ar" selected>العربية</option>
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+  </select>
+  <div class="topbar-sep" aria-hidden="true"></div>
+  <span class="topbar-label">النص</span>
+  <div class="size-btns" role="group" aria-label="حجم النص">
+    <button class="size-btn" data-size="sm" aria-label="نص صغير" aria-pressed="false" title="نص صغير">A−</button>
+    <button class="size-btn" data-size="md" aria-label="نص متوسط" aria-pressed="true"  title="نص متوسط">A</button>
+    <button class="size-btn" data-size="lg" aria-label="نص كبير"  aria-pressed="false" title="نص كبير">A+</button>
+  </div>
+  <div class="topbar-sep" aria-hidden="true"></div>
+  <button id="theme-toggle" class="theme-btn" aria-label="تبديل الوضع المظلم/الفاتح" title="تبديل الثيم">
+    <img src="https://img.icons8.com/ios/50/sun--v1.png" alt="تبديل الثيم" width="14" height="14" />
+  </button>
+</div>
+
+<!-- ══════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════ -->
+<nav role="navigation" aria-label="التنقل الرئيسي">
+  <a href="#hero" class="nav-logo" aria-label="الصفحة الرئيسية — PawPlace">
+    <img src="https://img.icons8.com/color/48/dog-paw-print.png" alt="" width="32" height="32" aria-hidden="true" />
+    <span class="nav-logo-text">PawPlace
+      <span class="nav-logo-sub">Dog Hotel · Hong Kong</span>
+    </span>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="#about"        data-key="nav_about">من نحن</a></li>
+    <li><a href="#services"     data-key="nav_services">خدماتنا</a></li>
+    <li><a href="#why-us">لماذا نحن</a></li>
+    <li><a href="#packages"     data-key="nav_packages">الباقات</a></li>
+    <li><a href="#team">فريق العمل</a></li>
+    <li><a href="#testimonials" data-key="nav_testimonials">آراء العملاء</a></li>
+    <li><a href="#contact" data-key="nav_contact" class="nav-cta">احجز الآن</a></li>
+  </ul>
+  <button class="hamburger" aria-label="فتح القائمة" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══════════════════════════════════════
+     MAIN
+══════════════════════════════════════ -->
+<main id="main">
+
+<!-- ── HERO ───────────────────────────── -->
+<section id="hero" aria-label="القسم الرئيسي">
+  <div class="hero-inner">
+
+    <div class="hero-text">
+      <div class="hero-eyebrow">
+        <img src="https://img.icons8.com/ios/50/location.png" class="icon-accent" alt="" width="13" height="13" aria-hidden="true" />
+        <span>هونج كونج · مُرخّص ومُعتمد منذ 2015</span>
+      </div>
+
+      <h1 class="hero-title">
+        منزل ثانٍ <em>لكلبك</em><br>الغالي
+      </h1>
+
+      <p class="hero-desc">
+        في PawPlace نقدم رعاية احترافية متكاملة لكلبك؛ بيئة آمنة ودافئة،
+        فريق طبي متخصص، ومرافق راقية تضمن له السعادة والصحة
+        على مدار الساعة طوال أيام الإقامة.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#packages" class="btn-primary">
+          <img src="https://img.icons8.com/ios/50/grid-2.png" alt="" width="16" height="16" style="filter:brightness(10)" aria-hidden="true" />
+          <span>استعرض الباقات</span>
+        </a>
+        <a href="#contact" class="btn-secondary">
+          <img src="https://img.icons8.com/ios/50/phone.png" class="icon-brown" alt="" width="16" height="16" aria-hidden="true" />
+          <span>احجز الآن</span>
+        </a>
+      </div>
+
+      <div class="hero-stats" role="list" aria-label="إحصاءاتنا">
+        <div class="hero-stat" role="listitem">
+          <span class="h-stat-num" data-count="500" data-suf="+">0+</span>
+          <span class="h-stat-lbl">كلب سعيد</span>
+        </div>
+        <div class="h-stat-sep" aria-hidden="true"></div>
+        <div class="hero-stat" role="listitem">
+          <span class="h-stat-num" data-count="9" data-suf=" سنوات">0</span>
+          <span class="h-stat-lbl">خبرة موثوقة</span>
+        </div>
+        <div class="h-stat-sep" aria-hidden="true"></div>
+        <div class="hero-stat" role="listitem">
+          <span class="h-stat-num" data-count="98" data-suf="٪">0</span>
+          <span class="h-stat-lbl">رضا العملاء</span>
+        </div>
+        <div class="h-stat-sep" aria-hidden="true"></div>
+        <div class="hero-stat" role="listitem">
+          <span class="h-stat-num" data-count="4" data-suf=" أطباء">0</span>
+          <span class="h-stat-lbl">بيطريون معتمدون</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rotator — 10s per slide -->
+    <div class="hero-visual">
+      <div class="hero-gallery" role="region" aria-label="صور المنشأة">
+        <div class="hg-slide active">
+          <img src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=800" alt="كلب يستمتع في المرعى الأخضر" class="zoomable" />
+          <div class="hg-overlay" aria-hidden="true"></div>
+          <p class="hg-caption">المراعي الخارجية الآمنة</p>
+        </div>
+        <div class="hg-slide">
+          <img src="https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&cs=tinysrgb&w=800" alt="كلب يستريح في غرفته المريحة" class="zoomable" />
+          <div class="hg-overlay" aria-hidden="true"></div>
+          <p class="hg-caption">غرف مكيفة بتدفئة أرضية</p>
+        </div>
+        <div class="hg-slide">
+          <img src="https://images.pexels.com/photos/6816863/pexels-photo-6816863.jpeg?auto=compress&cs=tinysrgb&w=800" alt="جلسة تجميل متخصصة" class="zoomable" />
+          <div class="hg-overlay" aria-hidden="true"></div>
+          <p class="hg-caption">صالة التجميل المتخصصة</p>
+        </div>
+        <div class="hg-slide">
+          <img src="https://images.pexels.com/photos/3361739/pexels-photo-3361739.jpeg?auto=compress&cs=tinysrgb&w=800" alt="كلاب تلعب في حظيرة اللعب" class="zoomable" />
+          <div class="hg-overlay" aria-hidden="true"></div>
+          <p class="hg-caption">حظيرة اللعب الداخلية</p>
+        </div>
+        <div class="hg-slide">
+          <img src="https://images.pexels.com/photos/4587998/pexels-photo-4587998.jpeg?auto=compress&cs=tinysrgb&w=800" alt="الرعاية البيطرية المتخصصة" class="zoomable" />
+          <div class="hg-overlay" aria-hidden="true"></div>
+          <p class="hg-caption">رعاية بيطرية 24/7</p>
+        </div>
+        <div class="hg-dots" role="tablist" aria-label="تنقل الصور">
+          <button class="hg-dot on" role="tab" aria-selected="true"  aria-label="صورة 1"></button>
+          <button class="hg-dot"    role="tab" aria-selected="false" aria-label="صورة 2"></button>
+          <button class="hg-dot"    role="tab" aria-selected="false" aria-label="صورة 3"></button>
+          <button class="hg-dot"    role="tab" aria-selected="false" aria-label="صورة 4"></button>
+          <button class="hg-dot"    role="tab" aria-selected="false" aria-label="صورة 5"></button>
+        </div>
+      </div>
+
+      <div class="hero-pill p1" aria-hidden="true">
+        <img src="https://img.icons8.com/color/48/star--v1.png" alt="" width="22" height="22" />
+        <div><p class="pill-label">4.9 / 5 نجوم</p><p class="pill-sub">+200 تقييم موثّق</p></div>
+      </div>
+      <div class="hero-pill p2" aria-hidden="true">
+        <img src="https://img.icons8.com/color/48/hospital.png" alt="" width="22" height="22" />
+        <div><p class="pill-label">بيطري متاح</p><p class="pill-sub">24 ساعة / 7 أيام</p></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── ABOUT ───────────────────────────── -->
+<section id="about" class="section" aria-labelledby="about-title">
+  <div class="container">
+    <div class="about-grid">
+
+      <div class="about-media rv-l">
+        <img class="about-main-img zoomable"
+             src="https://images.pexels.com/photos/1458916/pexels-photo-1458916.jpeg?auto=compress&cs=tinysrgb&w=800"
+             alt="كلاب سعيدة في PawPlace" loading="lazy" />
+        <img class="about-secondary-img zoomable"
+             src="https://images.pexels.com/photos/7210261/pexels-photo-7210261.jpeg?auto=compress&cs=tinysrgb&w=400"
+             alt="فريق PawPlace يعتني بالكلاب" loading="lazy" />
+        <div class="about-badge" aria-hidden="true">
+          <span class="about-badge-num">500+</span>
+          <span class="about-badge-txt">عميل سعيد</span>
+        </div>
+      </div>
+
+      <div class="rv-r">
+        <div class="sec-header">
+          <span class="sec-tag">من نحن</span>
+          <h2 class="sec-title" id="about-title">لأن كلبك <em>يستحق</em> الأفضل</h2>
+          <div class="sec-divider"></div>
+          <p class="sec-desc">
+            بدأت PawPlace من شغف حقيقي بالحيوانات وإيمان راسخ بأن كل كلب يستحق
+            رعاية تتجاوز مجرد التغذية والإيواء. نحن نبني علاقة ثقة حقيقية مع كل كلب
+            ومع أصحابه.
+          </p>
+        </div>
+        <p style="color:var(--text-2);line-height:1.85;font-size:.95rem;margin-bottom:1.8rem;">
+          يضم فريقنا أطباء بيطريين متخصصين ومدربين معتمدين دولياً يعملون جنباً إلى جنب
+          لتقديم رعاية متكاملة — طبية وترفيهية وعاطفية. نستقبل كلبك كأحد أفراد
+          عائلتنا ونُعيده أكثر سعادة وصحة.
+        </p>
+        <div class="about-features stagger">
+          <div class="af">
+            <img src="https://img.icons8.com/ios/50/hospital.png" class="icon-accent" alt="" width="22" height="22" aria-hidden="true" />
+            <div><h4>رعاية طبية على مدار الساعة</h4><p>طاقم بيطري متاح 24/7 لأي حالة طارئة أو متابعة دورية</p></div>
+          </div>
+          <div class="af">
+            <img src="https://img.icons8.com/ios/50/cctv.png" class="icon-brown" alt="" width="22" height="22" aria-hidden="true" />
+            <div><h4>مراقبة وتحديثات يومية</h4><p>صور وفيديوهات يومية ترسل مباشرة على هاتفك</p></div>
+          </div>
+          <div class="af">
+            <img src="https://img.icons8.com/ios/50/nature.png" class="icon-sage" alt="" width="22" height="22" aria-hidden="true" />
+            <div><h4>مراعي خضراء آمنة</h4><p>مساحات مسيجة للعب في الهواء الطلق تحت إشراف مستمر</p></div>
+          </div>
+          <div class="af">
+            <img src="https://img.icons8.com/ios/50/car.png" class="icon-brown" alt="" width="22" height="22" aria-hidden="true" />
+            <div><h4>خدمة التوصيل المنزلي</h4><p>نصطحب كلبك من وإلى باب منزلك بأمان تام</p></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY US ──────────────────────────── -->
+<section id="why-us" class="section" style="background:var(--surface);" aria-labelledby="why-title">
+  <div class="container">
+    <div class="sec-header center rv">
+      <span class="sec-tag sage">لماذا نحن</span>
+      <h2 class="sec-title" id="why-title">ما يجعل PawPlace <em>مختلفاً</em></h2>
+      <div class="sec-divider center"></div>
+      <p class="sec-desc">نحن لا نقدم خدمة فحسب — نبني تجربة رعاية حقيقية لكلبك</p>
+    </div>
+    <div class="why-grid stagger">
+      <div class="why-card rv">
+        <img src="https://img.icons8.com/ios/50/stethoscope.png" class="icon-accent" alt="" aria-hidden="true" />
+        <h3>رعاية طبية حقيقية</h3>
+        <p>4 أطباء بيطريين معتمدين يتناوبون العمل 24 ساعة. لا تنتظر حتى تظهر المشكلة — نراقب قبل أن تحدث.</p>
+      </div>
+      <div class="why-card rv">
+        <img src="https://img.icons8.com/ios/50/award.png" class="icon-warm" alt="" aria-hidden="true" />
+        <h3>معايير دولية</h3>
+        <p>حاصلون على اعتماد HKSPCA وشهادة ISO للرعاية الحيوانية. كل إجراء موثّق ومراجَع بانتظام.</p>
+      </div>
+      <div class="why-card rv">
+        <img src="https://img.icons8.com/ios/50/brain.png" class="icon-brown" alt="" aria-hidden="true" />
+        <h3>عناية بالصحة النفسية</h3>
+        <p>نعرف أن القلق يضر بكلبك. برامجنا الترفيهية والتفاعلية تُقلل التوتر وتُعزز الاتزان العاطفي.</p>
+      </div>
+      <div class="why-card rv">
+        <img src="https://img.icons8.com/ios/50/shield.png" class="icon-sage" alt="" aria-hidden="true" />
+        <h3>بيئة آمنة 100٪</h3>
+        <p>كاميرات مراقبة في كل مكان، أسوار مُعززة، وبروتوكولات سلامة صارمة تضمن عدم تعرض كلبك لأي خطر.</p>
+      </div>
+      <div class="why-card rv">
+        <img src="https://img.icons8.com/ios/50/leaf.png" class="icon-sage" alt="" aria-hidden="true" />
+        <h3>منتجات طبيعية فقط</h3>
+        <p>طعام عضوي مُوصى به بيطرياً، ومنتجات تنظيف وتجميل خالية من المواد الكيميائية الضارة.</p>
+      </div>
+      <div class="why-card rv">
+        <img src="https://img.icons8.com/ios/50/smartphone-tablet.png" class="icon-brown" alt="" aria-hidden="true" />
+        <h3>تواصل مستمر</h3>
+        <p>تقرير صحي يومي + صور + فيديو. أنت على اطلاع دائم بكل صغيرة وكبيرة تخص كلبك.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ────────────────────────── -->
+<section id="services" class="section" aria-labelledby="services-title">
+  <div class="container">
+    <div class="sec-header center rv">
+      <span class="sec-tag rose">خدماتنا</span>
+      <h2 class="sec-title" id="services-title">مرافق <em>راقية</em> لكل احتياج</h2>
+      <div class="sec-divider center"></div>
+      <p class="sec-desc">ثمانية خدمات متكاملة تُغطي كل ما يحتاجه كلبك خلال إقامته</p>
+    </div>
+    <div class="services-grid stagger" role="list">
+
+      <article class="svc rv" role="listitem">
+        <img class="svc-icon icon-accent" src="https://img.icons8.com/ios/50/scissors.png" alt="" aria-hidden="true" />
+        <h3>صالة التجميل والعناية</h3>
+        <p>حلاقة احترافية، استحمام بمنتجات طبيعية، عناية بالأظافر والأذنين وتنظيف الأسنان على يد متخصصين معتمدين.</p>
+        <span class="svc-badge">متاح يومياً · بالموعد</span>
+      </article>
+
+      <article class="svc rv" role="listitem">
+        <img class="svc-icon icon-warm" src="https://img.icons8.com/ios/50/home.png" alt="" aria-hidden="true" />
+        <h3>غرف مريحة ومكيفة</h3>
+        <p>غرف مجهزة بتدفئة وتبريد تحت الأرضية، تلفزيون مع مؤثرات صوتية مريحة، وفراش فاخر يومياً.</p>
+        <span class="svc-badge">تحكم كامل بالحرارة</span>
+      </article>
+
+      <article class="svc rv" role="listitem">
+        <img class="svc-icon icon-brown" src="https://img.icons8.com/ios/50/car.png" alt="" aria-hidden="true" />
+        <h3>خدمة التوصيل المنزلي</h3>
+        <p>نصل إليك في أي منطقة بهونج كونج بسيارات مجهزة ومعقّمة لاصطحاب كلبك وإعادته بأمان تام وراحة.</p>
+        <span class="svc-badge">جميع مناطق هونج كونج</span>
+      </article>
+
+      <article class="svc rv" role="listitem">
+        <img class="svc-icon icon-sage" src="https://img.icons8.com/ios/50/forest.png" alt="" aria-hidden="true" />
+        <h3>نزهات الطبيعة والغابات</h3>
+        <p>جولات يومية في الحدائق والغابات المحيطة تحت إشراف مدربين معتمدين لتنشيط كلبك جسدياً وذهنياً.</p>
+        <span class="svc-badge">نشاط يومي مُجدوَل</span>
+      </article>
+
+      <article class="svc rv" role="listitem">
+        <img class="svc-icon icon-accent" src="https://img.icons8.com/ios/50/stethoscope.png" alt="" aria-hidden="true" />
+        <h3>رعاية بيطرية 24/7</h3>
+        <p>طاقم طبي متكامل من 4 أطباء بيطريين يتناوبون على مدار الساعة للمتابعة الدورية وأي تدخل طارئ فوري.</p>
+        <span class="svc-badge">4 أطباء متاحون</span>
+      </article>
+
+      <article class="svc rv" role="listitem">
+        <img class="svc-icon icon-sage" src="https://img.icons8.com/ios/50/plant-under-rain.png" alt="" aria-hidden="true" />
+        <h3>مراعي خارجية آمنة</h3>
+        <p>مساحات خضراء 1200 متر مربع مسيجة بالكامل للعب الحر في الهواء الطلق مع إشراف مستمر من الفريق.</p>
+        <span class="svc-badge">1200 م² مسيّجة</span>
+      </article>
+
+      <article class="svc rv" role="listitem">
+        <img class="svc-icon icon-brown" src="https://img.icons8.com/ios/50/video-call.png" alt="" aria-hidden="true" />
+        <h3>تحديثات وصور يومية</h3>
+        <p>تقرير صحي مفصّل + صور وفيديو يومياً ترسل مباشرة عبر الواتساب أو البريد لتطمئن على كلبك في أي وقت.</p>
+        <span class="svc-badge">واتساب · بريد إلكتروني</span>
+      </article>
+
+      <article class="svc rv" role="listitem">
+        <img class="svc-icon icon-warm" src="https://img.icons8.com/ios/50/football2.png" alt="" aria-hidden="true" />
+        <h3>حظيرة اللعب الداخلية</h3>
+        <p>مساحة داخلية 400 متر مربع مجهزة بألعاب متنوعة وعقبات تدريبية وأرضية مطاطية آمنة لجميع الأحجام.</p>
+        <span class="svc-badge">400 م² · أرضية مطاطية</span>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ────────────────────── -->
+<section id="how" class="section" style="background:var(--bg-card);" aria-labelledby="how-title">
+  <div class="container">
+    <div class="sec-header center rv">
+      <span class="sec-tag">كيف يعمل</span>
+      <h2 class="sec-title" id="how-title">خطوات <em>بسيطة</em> للبدء</h2>
+      <div class="sec-divider center"></div>
+      <p class="sec-desc">من التواصل الأول حتى استقبال كلبك — عملية سلسة ومريحة</p>
+    </div>
+    <div class="steps-grid stagger">
+      <div class="step-card rv">
+        <span class="step-num">01</span>
+        <img class="step-icon icon-accent" src="https://img.icons8.com/ios/50/phone.png" alt="" aria-hidden="true" />
+        <h4>تواصل معنا</h4>
+        <p>اتصل أو أرسل رسالة وأخبرنا عن كلبك — نوعه، عمره، وأي احتياجات خاصة.</p>
+      </div>
+      <div class="step-card rv">
+        <span class="step-num">02</span>
+        <img class="step-icon icon-brown" src="https://img.icons8.com/ios/50/calendar.png" alt="" aria-hidden="true" />
+        <h4>حدد موعد الزيارة</h4>
+        <p>ندعوك لزيارة المنشأة لتتعرف على الفريق والمرافق قبل أي التزام.</p>
+      </div>
+      <div class="step-card rv">
+        <span class="step-num">03</span>
+        <img class="step-icon icon-sage" src="https://img.icons8.com/ios/50/checked-checkbox.png" alt="" aria-hidden="true" />
+        <h4>اختر الباقة</h4>
+        <p>نساعدك في اختيار الباقة الأنسب لاحتياجات كلبك وفق مدة الإقامة وميزانيتك.</p>
+      </div>
+      <div class="step-card rv">
+        <span class="step-num">04</span>
+        <img class="step-icon icon-warm" src="https://img.icons8.com/ios/50/car.png" alt="" aria-hidden="true" />
+        <h4>نستقبله بالمنزل</h4>
+        <p>سيارتنا تصل إليك في الموعد المحدد وتنقل كلبك بأمان وراحة تامة.</p>
+      </div>
+      <div class="step-card rv">
+        <span class="step-num">05</span>
+        <img class="step-icon icon-accent" src="https://img.icons8.com/ios/50/heart-health.png" alt="" aria-hidden="true" />
+        <h4>رعاية متكاملة</h4>
+        <p>كلبك بأيدٍ أمينة. ستتلقى تقارير وصور يومية طوال فترة الإقامة.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PACKAGES ────────────────────────── -->
+<section id="packages" class="section" aria-labelledby="packages-title">
+  <div class="container">
+    <div class="sec-header center rv">
+      <span class="sec-tag">الباقات</span>
+      <h2 class="sec-title" id="packages-title">اختر الباقة <em>المناسبة</em></h2>
+      <div class="sec-divider center"></div>
+      <p class="sec-desc">ثلاث باقات واضحة الأسعار تلبي جميع الاحتياجات، مع إمكانية التخصيص الكامل</p>
+    </div>
+
+    <div class="pkg-grid stagger">
+
+      <div class="pkg rv">
+        <div class="pkg-header">
+          <img class="pkg-icon icon-warm" src="https://img.icons8.com/ios/50/sun--v1.png" alt="" aria-hidden="true" />
+          <h3>باقة اليوم</h3>
+          <p class="pkg-sub">للإقامات القصيرة · يوم واحد</p>
+        </div>
+        <div class="pkg-body">
+          <ul class="pkg-list" role="list">
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> نزهتان خارجيتان يومياً</li>
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> منطقة لعب خارجية مسيجة</li>
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> مسار الرشاقة الداخلي</li>
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> وجبتان متوازنتان</li>
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> متابعة صحية أساسية</li>
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> تقرير نهاية اليوم</li>
+          </ul>
+        </div>
+        <div class="pkg-foot">
+          <a href="#contact" class="btn-pkg">احجز الآن</a>
+        </div>
+      </div>
+
+      <div class="pkg best rv">
+        <div class="pkg-header">
+          <span class="pkg-best-tag">الأكثر طلباً</span>
+          <img class="pkg-icon icon-accent" src="https://img.icons8.com/ios/50/crown.png" alt="" aria-hidden="true" />
+          <h3>الباقة المميزة</h3>
+          <p class="pkg-sub">تجربة VIP كاملة · متعدد الأيام</p>
+        </div>
+        <div class="pkg-body">
+          <ul class="pkg-list" role="list">
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> 4 نزهات يومية مجدولة</li>
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> مساحة عشب خاصة</li>
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> غرفة VIP مع تلفاز</li>
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> صور وفيديو يومياً</li>
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> توصيل مجاني ذهاباً وإياباً</li>
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> رعاية بيطرية مخصصة</li>
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> جلسة تجميل كاملة مجانية</li>
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> تقرير طبي مفصّل أسبوعياً</li>
+          </ul>
+        </div>
+        <div class="pkg-foot">
+          <a href="#contact" class="btn-pkg filled">احجز VIP الآن</a>
+        </div>
+      </div>
+
+      <div class="pkg rv">
+        <div class="pkg-header">
+          <img class="pkg-icon icon-brown" src="https://img.icons8.com/ios/50/star--v1.png" alt="" aria-hidden="true" />
+          <h3>الكلاسيكية</h3>
+          <p class="pkg-sub">التوازن المثالي · متعدد الأيام</p>
+        </div>
+        <div class="pkg-body">
+          <ul class="pkg-list" role="list">
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> 3 نزهات يومية مجدولة</li>
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> حظيرة اللعب الداخلية</li>
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> غرفة مكيفة مريحة</li>
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> جلسة حلاقة وتنظيف</li>
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> تحديثات يومية بالصور</li>
+            <li><img src="https://img.icons8.com/ios/50/checkmark--v1.png" class="icon-sage" alt="" /> متابعة بيطرية منتظمة</li>
+          </ul>
+        </div>
+        <div class="pkg-foot">
+          <a href="#contact" class="btn-pkg">احجز الآن</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pkg-note rv">
+      <p>هل تحتاج باقة مخصصة؟</p>
+      <span>للإقامات الطويلة أو الكلاب ذات المتطلبات الخاصة، نصمم لك باقة تتناسب تماماً مع احتياجاتك وميزانيتك.</span>
+      <a href="#contact" class="btn-primary" style="display:inline-flex;">
+        <img src="https://img.icons8.com/ios/50/phone.png" alt="" width="16" height="16" style="filter:brightness(10)" />
+        <span>تواصل معنا</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY ─────────────────────────── -->
+<section id="gallery" class="section" style="background:var(--surface);" aria-labelledby="gallery-title">
+  <div class="container">
+    <div class="sec-header center rv">
+      <span class="sec-tag sage">معرضنا</span>
+      <h2 class="sec-title" id="gallery-title">لحظات <span class="sage">حقيقية</span></h2>
+      <div class="sec-divider center"></div>
+      <p class="sec-desc">صور حقيقية من يوميات كلابنا في PawPlace — بدون تعديل أو فلتر</p>
+    </div>
+  </div>
+  <div class="gal-wrap" aria-label="معرض الصور">
+    <div class="gal-row" role="list">
+      <div class="gal-item" role="listitem" tabindex="0"><img src="https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg?auto=compress&cs=tinysrgb&w=420" alt="كلب يلعب في الحديقة" loading="lazy" /><div class="gal-item-ov"><span><img src="https://img.icons8.com/ios/50/zoom-in.png" class="icon-brown" alt="" width="13" />وقت اللعب</span></div></div>
+      <div class="gal-item" role="listitem" tabindex="0"><img src="https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&w=420" alt="كلب سعيد" loading="lazy" /><div class="gal-item-ov"><span><img src="https://img.icons8.com/ios/50/zoom-in.png" class="icon-brown" alt="" width="13" />لحظة سعادة</span></div></div>
+      <div class="gal-item" role="listitem" tabindex="0"><img src="https://images.pexels.com/photos/1906153/pexels-photo-1906153.jpeg?auto=compress&cs=tinysrgb&w=420" alt="كلاب في المرعى" loading="lazy" /><div class="gal-item-ov"><span><img src="https://img.icons8.com/ios/50/zoom-in.png" class="icon-brown" alt="" width="13" />المرعى الأخضر</span></div></div>
+      <div class="gal-item" role="listitem" tabindex="0"><img src="https://images.pexels.com/photos/1170986/pexels-photo-1170986.jpeg?auto=compress&cs=tinysrgb&w=420" alt="كلب يستريح" loading="lazy" /><div class="gal-item-ov"><span><img src="https://img.icons8.com/ios/50/zoom-in.png" class="icon-brown" alt="" width="13" />وقت الراحة</span></div></div>
+      <div class="gal-item" role="listitem" tabindex="0"><img src="https://images.pexels.com/photos/2023384/pexels-photo-2023384.jpeg?auto=compress&cs=tinysrgb&w=420" alt="كلب مع المدرب" loading="lazy" /><div class="gal-item-ov"><span><img src="https://img.icons8.com/ios/50/zoom-in.png" class="icon-brown" alt="" width="13" />مع فريقنا</span></div></div>
+      <div class="gal-item" role="listitem" tabindex="0"><img src="https://images.pexels.com/photos/3361739/pexels-photo-3361739.jpeg?auto=compress&cs=tinysrgb&w=420" alt="كلاب تلعب" loading="lazy" /><div class="gal-item-ov"><span><img src="https://img.icons8.com/ios/50/zoom-in.png" class="icon-brown" alt="" width="13" />حظيرة اللعب</span></div></div>
+    </div>
+    <div class="gal-row gal-row-2" role="list">
+      <div class="gal-item" role="listitem" tabindex="0"><img src="https://images.pexels.com/photos/6816863/pexels-photo-6816863.jpeg?auto=compress&cs=tinysrgb&w=420" alt="جلسة تجميل" loading="lazy" /><div class="gal-item-ov"><span><img src="https://img.icons8.com/ios/50/zoom-in.png" class="icon-brown" alt="" width="13" />صالة التجميل</span></div></div>
+      <div class="gal-item" role="listitem" tabindex="0"><img src="https://images.pexels.com/photos/4587998/pexels-photo-4587998.jpeg?auto=compress&cs=tinysrgb&w=420" alt="رعاية بيطرية" loading="lazy" /><div class="gal-item-ov"><span><img src="https://img.icons8.com/ios/50/zoom-in.png" class="icon-brown" alt="" width="13" />الرعاية الطبية</span></div></div>
+      <div class="gal-item" role="listitem" tabindex="0"><img src="https://images.pexels.com/photos/1458916/pexels-photo-1458916.jpeg?auto=compress&cs=tinysrgb&w=420" alt="كلب لطيف" loading="lazy" /><div class="gal-item-ov"><span><img src="https://img.icons8.com/ios/50/zoom-in.png" class="icon-brown" alt="" width="13" />ضيوفنا الكرام</span></div></div>
+      <div class="gal-item" role="listitem" tabindex="0"><img src="https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&cs=tinysrgb&w=420" alt="غرف الإقامة" loading="lazy" /><div class="gal-item-ov"><span><img src="https://img.icons8.com/ios/50/zoom-in.png" class="icon-brown" alt="" width="13" />غرف الإقامة</span></div></div>
+      <div class="gal-item" role="listitem" tabindex="0"><img src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=420" alt="نزهة الطبيعة" loading="lazy" /><div class="gal-item-ov"><span><img src="https://img.icons8.com/ios/50/zoom-in.png" class="icon-brown" alt="" width="13" />نزهة الطبيعة</span></div></div>
+      <div class="gal-item" role="listitem" tabindex="0"><img src="https://images.pexels.com/photos/7210261/pexels-photo-7210261.jpeg?auto=compress&cs=tinysrgb&w=420" alt="فريق PawPlace" loading="lazy" /><div class="gal-item-ov"><span><img src="https://img.icons8.com/ios/50/zoom-in.png" class="icon-brown" alt="" width="13" />فريق العناية</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TEAM ────────────────────────────── -->
+<section id="team" class="section" aria-labelledby="team-title">
+  <div class="container">
+    <div class="sec-header center rv">
+      <span class="sec-tag">فريق العمل</span>
+      <h2 class="sec-title" id="team-title">مزودو <em>الخدمة</em></h2>
+      <div class="sec-divider center"></div>
+      <p class="sec-desc">فريق متخصص ومعتمد — كل عضو يحمل خبرة حقيقية وشغفاً حقيقياً بالحيوانات</p>
+    </div>
+    <div class="team-grid stagger">
+
+      <article class="team-card rv">
+        <div class="team-img-wrap">
+          <img src="https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop" alt="د. سارة لي — طبيبة بيطرية رئيسية" class="team-img" loading="lazy" />
+        </div>
+        <div class="team-body">
+          <h3 class="team-name">د. سارة لي</h3>
+          <p class="team-role">طبيبة بيطرية رئيسية</p>
+          <p class="team-bio">12 عاماً من الخبرة في طب الحيوانات. متخصصة في الرعاية الوقائية، التشخيص المبكر، والجراحة العامة. حاصلة على اعتماد HKVC.</p>
+          <div class="team-tags">
+            <span class="team-tag">طب بيطري</span>
+            <span class="team-tag">جراحة</span>
+            <span class="team-tag">12 سنة</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="team-card rv">
+        <div class="team-img-wrap">
+          <img src="https://images.pexels.com/photos/5384445/pexels-photo-5384445.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop" alt="مارك تشين — مدرب معتمد" class="team-img" loading="lazy" />
+        </div>
+        <div class="team-body">
+          <h3 class="team-name">مارك تشين</h3>
+          <p class="team-role">مدرب كلاب دولي معتمد</p>
+          <p class="team-bio">حاصل على شهادة CCPDT الدولية. متخصص في التدريب الإيجابي، إعادة التأهيل السلوكي، والتعامل مع كلاب القلق والعدوانية.</p>
+          <div class="team-tags">
+            <span class="team-tag">CCPDT</span>
+            <span class="team-tag">تدريب سلوكي</span>
+            <span class="team-tag">8 سنوات</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="team-card rv">
+        <div class="team-img-wrap">
+          <img src="https://images.pexels.com/photos/3727463/pexels-photo-3727463.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop" alt="إيمي وونج — متخصصة تجميل" class="team-img" loading="lazy" />
+        </div>
+        <div class="team-body">
+          <h3 class="team-name">إيمي وونج</h3>
+          <p class="team-role">متخصصة تجميل الكلاب</p>
+          <p class="team-bio">8 سنوات من التجميل المتخصص لجميع السلالات. تستخدم منتجات طبيعية معتمدة بيطرياً، خبيرة في السلالات ذات الشعر الطويل.</p>
+          <div class="team-tags">
+            <span class="team-tag">تجميل متخصص</span>
+            <span class="team-tag">منتجات طبيعية</span>
+            <span class="team-tag">8 سنوات</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="team-card rv">
+        <div class="team-img-wrap">
+          <img src="https://images.pexels.com/photos/6235231/pexels-photo-6235231.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop" alt="توم لاو — مشرف رعاية يومية" class="team-img" loading="lazy" />
+        </div>
+        <div class="team-body">
+          <h3 class="team-name">توم لاو</h3>
+          <p class="team-role">مشرف الرعاية اليومية</p>
+          <p class="team-bio">يشرف على جميع النزهات اليومية والأنشطة الترفيهية. متخصص في الرعاية العاطفية للكلاب وتقليل التوتر وقلق الانفصال.</p>
+          <div class="team-tags">
+            <span class="team-tag">رعاية يومية</span>
+            <span class="team-tag">الصحة النفسية</span>
+            <span class="team-tag">5 سنوات</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ───────────────────── -->
+<section id="testimonials" class="section" style="background:var(--bg-card);" aria-labelledby="testi-title">
+  <div class="container">
+    <div class="sec-header center rv">
+      <span class="sec-tag rose">آراء العملاء</span>
+      <h2 class="sec-title" id="testi-title">ماذا يقول <em>أصحاب الكلاب</em></h2>
+      <div class="sec-divider center"></div>
+      <p class="sec-desc">تجارب حقيقية من عملائنا الكرام الذين وثقوا بنا رعاية أحبائهم</p>
+    </div>
+    <div class="testi-wrap rv" role="region" aria-label="آراء العملاء" aria-live="polite">
+
+      <div class="t-slide on" role="article">
+        <div class="t-card">
+          <div class="t-stars" aria-label="تقييم 5 نجوم">
+            <img src="https://img.icons8.com/color/20/star--v1.png" alt="نجمة" /><img src="https://img.icons8.com/color/20/star--v1.png" alt="" /><img src="https://img.icons8.com/color/20/star--v1.png" alt="" /><img src="https://img.icons8.com/color/20/star--v1.png" alt="" /><img src="https://img.icons8.com/color/20/star--v1.png" alt="" />
+          </div>
+          <p class="t-text">"كنت مترددة في البداية لأن هذه أول مرة أترك كلبتي بعيداً، لكن فريق PawPlace طمأنني من اللحظة الأولى. التحديثات اليومية بالصور كانت تفصيلية جداً، وعادت كلبتي أكثر نشاطاً وهدوءاً. الاهتمام الذي تلقته فاق توقعاتي تماماً."</p>
+          <div class="t-author">
+            <img src="../Images/raneem.jpg" alt="رنيم" class="t-avatar" />
+            <div>
+              <p class="t-name">رنيم</p>
+              <p class="t-pet">صاحبة Bella — Maltese</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-slide" role="article">
+        <div class="t-card">
+          <div class="t-stars" aria-label="تقييم 5 نجوم">
+            <img src="https://img.icons8.com/color/20/star--v1.png" alt="نجمة" /><img src="https://img.icons8.com/color/20/star--v1.png" alt="" /><img src="https://img.icons8.com/color/20/star--v1.png" alt="" /><img src="https://img.icons8.com/color/20/star--v1.png" alt="" /><img src="https://img.icons8.com/color/20/star--v1.png" alt="" />
+          </div>
+          <p class="t-text">"الباقة المميزة تستحق كل قرش. كلبي Rocky يحصل على رعاية استثنائية — أربع نزهات يومياً، غرفة مكيفة، ورعاية طبية مستمرة. خدمة التوصيل إلى المنزل وفّرت علي الكثير من الوقت، وأنصح كل من لديه كلب في هونج كونج بتجربة PawPlace."</p>
+          <div class="t-author">
+            <img src="../Images/jawad_clean.png" alt="جواد" class="t-avatar" />
+            <div>
+              <p class="t-name">جواد</p>
+              <p class="t-pet">صاحب Rocky — German Shepherd</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-slide" role="article">
+        <div class="t-card">
+          <div class="t-stars" aria-label="تقييم 5 نجوم">
+            <img src="https://img.icons8.com/color/20/star--v1.png" alt="نجمة" /><img src="https://img.icons8.com/color/20/star--v1.png" alt="" /><img src="https://img.icons8.com/color/20/star--v1.png" alt="" /><img src="https://img.icons8.com/color/20/star--v1.png" alt="" /><img src="https://img.icons8.com/color/20/star--v1.png" alt="" />
+          </div>
+          <p class="t-text">"جربت ثلاثة فنادق كلاب مختلفة في هونج كونج قبل PawPlace، ولا شيء يقارن. النظافة والاحترافية لافتة جداً. كلبي Milo يُظهر هدوءاً وسعادة واضحة في كل مرة يعود فيها، وهذا ما يجعلني أثق بهم بلا تردد."</p>
+          <div class="t-author">
+            <img src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=100" alt="ليلى الأحمد" class="t-avatar" />
+            <div>
+              <p class="t-name">ليلى الأحمد</p>
+              <p class="t-pet">صاحبة Milo — Shih Tzu</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-slide" role="article">
+        <div class="t-card">
+          <div class="t-stars" aria-label="تقييم 5 نجوم">
+            <img src="https://img.icons8.com/color/20/star--v1.png" alt="نجمة" /><img src="https://img.icons8.com/color/20/star--v1.png" alt="" /><img src="https://img.icons8.com/color/20/star--v1.png" alt="" /><img src="https://img.icons8.com/color/20/star--v1.png" alt="" /><img src="https://img.icons8.com/color/20/star--v1.png" alt="" />
+          </div>
+          <p class="t-text">"سافرت لأسبوعين وتركت كلبي Luna هنا. التقارير الطبية الأسبوعية والصور اليومية أعطتني راحة بال حقيقية لم أتوقعها. عاد بصحة ممتازة وبحيوية أعلى مما تركته. سأعود دائماً ولن أفكر في بديل آخر."</p>
+          <div class="t-author">
+            <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100" alt="كريم نصر" class="t-avatar" />
+            <div>
+              <p class="t-name">كريم نصر</p>
+              <p class="t-pet">صاحب Luna — Labrador</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-nav" role="tablist" aria-label="تنقل بين التقييمات">
+        <button class="t-dot on" role="tab" aria-selected="true"  aria-label="تقييم رنيم"></button>
+        <button class="t-dot"    role="tab" aria-selected="false" aria-label="تقييم جواد"></button>
+        <button class="t-dot"    role="tab" aria-selected="false" aria-label="تقييم ليلى"></button>
+        <button class="t-dot"    role="tab" aria-selected="false" aria-label="تقييم كريم"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ─────────────────────────────── -->
+<section id="faq" class="section" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="sec-header center rv">
+      <span class="sec-tag">الأسئلة الشائعة</span>
+      <h2 class="sec-title" id="faq-title">أسئلة <em>يسألها</em> معظم العملاء</h2>
+      <div class="sec-divider center"></div>
+    </div>
+    <div class="faq-list rv">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          هل يمكنني زيارة كلبي أثناء إقامته؟
+          <img src="https://img.icons8.com/ios/30/plus.png" class="icon-accent" alt="" width="18" height="18" aria-hidden="true" />
+        </button>
+        <div class="faq-a">نعم، يمكنك ترتيب زيارة مع الفريق. نشجع الزيارات خاصةً للإقامات الطويلة، وذلك بتنسيق مسبق لضمان عدم تعطيل روتين كلبك اليومي.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          ماذا يحدث في حالة مرض كلبي؟
+          <img src="https://img.icons8.com/ios/30/plus.png" class="icon-accent" alt="" width="18" height="18" aria-hidden="true" />
+        </button>
+        <div class="faq-a">يتولى طاقمنا البيطري المقيم التشخيص والعلاج فوراً. في الحالات الطارئة نتواصل معك فوراً ونوجّه كلبك إلى أقرب عيادة متخصصة مع مرافقة أحد أفراد الفريق طوال الوقت.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          هل تقبلون جميع السلالات والأحجام؟
+          <img src="https://img.icons8.com/ios/30/plus.png" class="icon-accent" alt="" width="18" height="18" aria-hidden="true" />
+        </button>
+        <div class="faq-a">نعم، نستقبل جميع السلالات والأحجام من الصغيرة جداً إلى الكبيرة. لدينا مناطق وغرف مخصصة لكل حجم مع بروتوكولات تفاعل آمنة بين الكلاب.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          ما الوثائق المطلوبة لإقامة كلبي؟
+          <img src="https://img.icons8.com/ios/30/plus.png" class="icon-accent" alt="" width="18" height="18" aria-hidden="true" />
+        </button>
+        <div class="faq-a">نحتاج سجل التطعيمات الحديثة (خاصةً الكلب الأوقي والبارفو) وشهادة صحة من بيطري معتمد صادرة خلال الـ 30 يوم الماضية. يمكن تزويدنا بها رقمياً قبل موعد الوصول.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          هل يمكنني إرسال طعام كلبي الخاص؟
+          <img src="https://img.icons8.com/ios/30/plus.png" class="icon-accent" alt="" width="18" height="18" aria-hidden="true" />
+        </button>
+        <div class="faq-a">بالتأكيد. نحترم الروتين الغذائي لكل كلب. يمكنك إرسال طعامه المعتاد مع تعليمات الكميات والمواعيد، وسيلتزم فريقنا بها تماماً.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ─────────────────────────── -->
+<section id="contact" class="section" style="background:var(--bg-card);" aria-labelledby="contact-title">
+  <div class="container">
+    <div class="sec-header center rv">
+      <span class="sec-tag">تواصل معنا</span>
+      <h2 class="sec-title" id="contact-title">ابدأ <em>رحلة الرعاية</em> اليوم</h2>
+      <div class="sec-divider center"></div>
+      <p class="sec-desc">فريقنا جاهز للإجابة على كل استفساراتك وتنظيم أفضل تجربة لكلبك</p>
+    </div>
+
+    <div class="contact-grid">
+
+      <div class="contact-info rv-l">
+        <h3>معلومات التواصل</h3>
+        <address style="font-style:normal;">
+          <div class="c-item">
+            <img src="https://img.icons8.com/ios/50/location.png" class="icon-accent" alt="" width="20" height="20" aria-hidden="true" />
+            <div><span class="c-lbl">العنوان</span><span class="c-val">Tai Po District، New Territories، هونج كونج</span></div>
+          </div>
+          <div class="c-item">
+            <img src="https://img.icons8.com/ios/50/phone.png" class="icon-brown" alt="" width="20" height="20" aria-hidden="true" />
+            <div><span class="c-lbl">الهاتف</span><a href="tel:+85212345678" class="c-val">+852 1234 5678</a></div>
+          </div>
+          <div class="c-item">
+            <img src="https://img.icons8.com/ios/50/email.png" class="icon-brown" alt="" width="20" height="20" aria-hidden="true" />
+            <div><span class="c-lbl">البريد الإلكتروني</span><a href="mailto:hello@pawplace.hk" class="c-val">hello@pawplace.hk</a></div>
+          </div>
+          <div class="c-item">
+            <img src="https://img.icons8.com/ios/50/clock--v1.png" class="icon-sage" alt="" width="20" height="20" aria-hidden="true" />
+            <div><span class="c-lbl">ساعات الاستقبال</span><span class="c-val">مفتوح 24 ساعة — 7 أيام في الأسبوع</span></div>
+          </div>
+          <div class="c-item">
+            <img src="https://img.icons8.com/ios/50/whatsapp.png" class="icon-sage" alt="" width="20" height="20" aria-hidden="true" />
+            <div><span class="c-lbl">واتساب</span><a href="https://wa.me/85212345678" class="c-val">+852 1234 5678</a></div>
+          </div>
+        </address>
+        <div class="social-row" aria-label="وسائل التواصل الاجتماعي">
+          <a href="#" class="soc-btn" aria-label="فيسبوك"><img src="https://img.icons8.com/ios/50/facebook--v1.png" class="icon-brown" alt="فيسبوك" width="18" height="18" /></a>
+          <a href="#" class="soc-btn" aria-label="إنستغرام"><img src="https://img.icons8.com/ios/50/instagram-new.png" class="icon-accent" alt="إنستغرام" width="18" height="18" /></a>
+          <a href="#" class="soc-btn" aria-label="واتساب"><img src="https://img.icons8.com/ios/50/whatsapp.png" class="icon-sage" alt="واتساب" width="18" height="18" /></a>
+          <a href="#" class="soc-btn" aria-label="تيك توك"><img src="https://img.icons8.com/ios/50/tiktok.png" class="icon-brown" alt="تيك توك" width="18" height="18" /></a>
+        </div>
+      </div>
+
+      <div class="rv-r">
+        <div class="form-card">
+          <form id="contactForm" novalidate aria-label="نموذج التواصل">
+            <div class="f-row">
+              <div class="f-group">
+                <label for="f-name">الاسم الكامل <span aria-label="مطلوب" style="color:var(--accent)">*</span></label>
+                <input id="f-name" type="text" name="name" placeholder="أحمد محمد" required autocomplete="name" />
+              </div>
+              <div class="f-group">
+                <label for="f-phone">رقم الهاتف <span aria-label="مطلوب" style="color:var(--accent)">*</span></label>
+                <input id="f-phone" type="tel" name="phone" placeholder="+852 XXXX XXXX" required autocomplete="tel" />
+              </div>
+            </div>
+            <div class="f-group">
+              <label for="f-email">البريد الإلكتروني <span aria-label="مطلوب" style="color:var(--accent)">*</span></label>
+              <input id="f-email" type="email" name="email" placeholder="you@email.com" required autocomplete="email" />
+            </div>
+            <div class="f-row">
+              <div class="f-group">
+                <label for="f-dog">اسم الكلب</label>
+                <input id="f-dog" type="text" name="dog" placeholder="مثال: Max" />
+              </div>
+              <div class="f-group">
+                <label for="f-breed">السلالة</label>
+                <input id="f-breed" type="text" name="breed" placeholder="Golden Retriever" />
+              </div>
+            </div>
+            <div class="f-row">
+              <div class="f-group">
+                <label for="f-pkg">الباقة المطلوبة</label>
+                <select id="f-pkg" name="package">
+                  <option value="" disabled selected>اختر الباقة...</option>
+                  <option>الباقة المميزة — VIP</option>
+                  <option>الباقة الكلاسيكية</option>
+                  <option>باقة اليوم</option>
+                  <option>باقة مخصصة</option>
+                </select>
+              </div>
+              <div class="f-group">
+                <label for="f-duration">مدة الإقامة</label>
+                <select id="f-duration" name="duration">
+                  <option value="" disabled selected>اختر المدة...</option>
+                  <option>يوم واحد</option>
+                  <option>2 – 3 أيام</option>
+                  <option>أسبوع</option>
+                  <option>أسبوعان</option>
+                  <option>أكثر من أسبوعين</option>
+                </select>
+              </div>
+            </div>
+            <div class="f-group">
+              <label for="f-msg">تفاصيل إضافية</label>
+              <textarea id="f-msg" name="message" placeholder="أخبرنا عن كلبك — أي احتياجات خاصة، أدوية، حساسيات، أو استفسارات..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">
+              <img src="https://img.icons8.com/ios/50/sent.png" alt="" width="18" height="18" style="filter:brightness(10)" />
+              إرسال الطلب
+            </button>
+          </form>
+          <div class="success-box" role="alert" aria-live="assertive">
+            <img src="https://img.icons8.com/color/64/ok--v1.png" alt="تم بنجاح" width="48" />
+            <h3>تم الإرسال بنجاح</h3>
+            <p>شكراً لك. سيتواصل فريقنا معك خلال ساعات.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <p class="logo">PawPlace</p>
+        <p class="tag">فندق الكلاب الفاخر في هونج كونج.<br>رعاية موثوقة ومُعتمدة منذ عام 2015.</p>
+      </div>
+      <nav class="f-col" aria-label="روابط سريعة">
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a href="#about"><img src="https://img.icons8.com/ios/20/about.png" alt="" aria-hidden="true" style="filter:brightness(3) saturate(0)" />من نحن</a></li>
+          <li><a href="#services"><img src="https://img.icons8.com/ios/20/services.png" alt="" aria-hidden="true" style="filter:brightness(3) saturate(0)" />خدماتنا</a></li>
+          <li><a href="#packages"><img src="https://img.icons8.com/ios/20/gift.png" alt="" aria-hidden="true" style="filter:brightness(3) saturate(0)" />الباقات</a></li>
+          <li><a href="#team"><img src="https://img.icons8.com/ios/20/conference-call.png" alt="" aria-hidden="true" style="filter:brightness(3) saturate(0)" />فريق العمل</a></li>
+          <li><a href="#faq"><img src="https://img.icons8.com/ios/20/ask-question.png" alt="" aria-hidden="true" style="filter:brightness(3) saturate(0)" />الأسئلة الشائعة</a></li>
+        </ul>
+      </nav>
+      <nav class="f-col" aria-label="الخدمات">
+        <h4>خدماتنا</h4>
+        <ul>
+          <li><a href="#services">صالة التجميل</a></li>
+          <li><a href="#services">الغرف الفاخرة</a></li>
+          <li><a href="#services">الرعاية البيطرية</a></li>
+          <li><a href="#services">التوصيل المنزلي</a></li>
+          <li><a href="#services">نزهات الطبيعة</a></li>
+        </ul>
+      </nav>
+      <div class="f-col">
+        <h4>تواصل</h4>
+        <ul>
+          <li><a href="tel:+85212345678">+852 1234 5678</a></li>
+          <li><a href="mailto:hello@pawplace.hk">hello@pawplace.hk</a></li>
+          <li><a href="https://wa.me/85212345678">واتساب</a></li>
+          <li><a href="#contact">New Territories, HK</a></li>
+          <li><a href="#contact">مفتوح 24/7</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 PawPlace. جميع الحقوق محفوظة.</p>
+      <p>صُنع بعناية حقيقية لمحبي الكلاب في هونج كونج</p>
+    </div>
+  </div>
+</footer>
+
+<button id="scroll-top" aria-label="العودة لأعلى الصفحة" title="الأعلى">
+  <img src="https://img.icons8.com/ios/50/up.png" class="icon-brown" alt="" width="18" height="18" />
+</button>
+
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="عارض الصور">
+  <button id="lb-close" aria-label="إغلاق">
+    <img src="https://img.icons8.com/ios/50/multiply.png" alt="إغلاق" width="18" height="18" style="filter:brightness(10)" />
+  </button>
+  <img src="" alt="" />
+</div>
+
+<script src="../JS/main.js"></script>
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
+</body>
+</html>
